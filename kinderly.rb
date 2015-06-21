@@ -65,7 +65,6 @@ class Kinderly
 end
 
 k = Kinderly.new
-#puts k.brakets '()()()'
-#puts k.anagram_of_palindrome('ab')
-#puts k.palindrome_in_anagram('aabcba')
+#puts k.brackets '(()()()())'
+#puts k.palindrome_in_anagram('dooernedrn')
 #puts k.triangle([5,10,8])
