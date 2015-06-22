@@ -15,49 +15,52 @@ class Kinderly
     return open_bracket_counter == 0 ? 1 : 0
   end
 
-  def palindrome_in_anagram str
+  def palindrome str
+
+    # Если это одна буква то она палиндром
     size = str.size
     return 1 if size <= 1
 
     # Получаем возможные варианты перестановки букв
-    # и убираем дубликаты
-    all_combination = str.split("").permutation.to_a.uniq
+    combinations = str.split("").permutation.to_a
+    combinations_size = combinations.size
 
     # Ищем палиндром
-    all_combination.each do |combination|
-      return 1 if combination == combination.reverse
+    for i in 0..combinations_size-1 do
+      return 1 if combinations[i] == combinations[i].reverse
     end
 
     return 0
 
   end
 
-  def triangle array
+  def triangle combinations, c = 0
 
-    # Получаем возможные варианты расстановки массива по 3 значения
-    # и убираем дубликаты
-    array.permutation(3).to_a.uniq.each do |combination|
-      return 1 if is_triangle?(combination[0], combination[1], combination[2])
+    # Если массив пустой
+    return 0 if combinations.empty?
+
+    # Если это первая итерация
+    if c == 0
+
+      # Получаем все возможные варианты расстановки массива по 3 значения
+      combinations = combinations.permutation(3).to_a
+
     end
 
-    return 0
+    # Счетчик
+    c += 1
 
-  end
-
-  def is_triangle? p, q, r
-
+    p = combinations[0][0]
+    q = combinations[0][1]
+    r = combinations[0][2]
     n = 1000000
 
-    if p >= 0 and q > p and r > q and n > r
-
-      if (p + q) > r and (q + r) > p and (r + p) > q
-        true
-      else
-        false
-      end
-
+    # Если это треугольник
+    if p >= 0 and q > p and r > q and n > r and (p + q) > r and (q + r) > p and (r + p) > q
+      return 1
     else
-      false
+      combinations.shift
+      triangle combinations, c
     end
 
   end
@@ -65,6 +68,13 @@ class Kinderly
 end
 
 k = Kinderly.new
-#puts k.brackets '(()()()())'
-#puts k.palindrome_in_anagram('dooernedrn')
-#puts k.triangle([5,10,8])
+
+# return 1
+puts k.brackets '(()()()())'
+puts k.palindrome('dooernedrn')
+puts k.triangle([5,10,8])
+
+# return 0
+puts k.brackets '(()()()()'
+puts k.palindrome('dooernedr1')
+puts k.triangle([10,50,5,1])
