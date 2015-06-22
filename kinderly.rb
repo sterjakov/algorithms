@@ -1,18 +1,25 @@
 class Kinderly
 
   def brackets str
+
+    # Если один символ то уже не верно
     size = str.size
     return 1 if size == 0
+
     # открытая скобка прибавляет к счетчику 1, закрытая уменьшает на 1
     # если в итоге получилось 0 - properly nested
+
     open_bracket_counter = 0
+
     for i in 0..size-1 do
       open_bracket_counter += 1 if str[i] == '('
       open_bracket_counter -= 1 if str[i] == ')'
       # если первая скобка ')', значит счетчик уйдёт в минус и нам все ясно
       return 0 if open_bracket_counter == -1
     end
+
     return open_bracket_counter == 0 ? 1 : 0
+
   end
 
   def palindrome str
