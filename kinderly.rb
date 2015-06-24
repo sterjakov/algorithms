@@ -1,4 +1,4 @@
-class Kinderly
+class Algorithm
 
   def brackets str
 
@@ -74,14 +74,14 @@ class Kinderly
 
 end
 
-k = Kinderly.new
+a = Algorithm.new
 
 # return 1
-puts k.brackets '(()()()())'
-puts k.palindrome('dooernedrn')
-puts k.triangle([5,10,8])
+#puts a.brackets '(()()()())'
+#puts a.palindrome('dooernedrn')
+#puts a.triangle([5,10,8])
 
 # return 0
-puts k.brackets '(()()()()'
-puts k.palindrome('dooernedr1')
-puts k.triangle([10,50,5,1])
+#puts a.brackets '(()()()()'
+#puts a.palindrome('dooernedr1')
+#puts a.triangle([10,2,5,1,8,20])
